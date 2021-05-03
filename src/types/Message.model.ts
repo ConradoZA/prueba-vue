@@ -1,10 +1,10 @@
 import { uuid } from "vue-uuid";
 
 export class MessageModel {
-  id: String;
-  author: String | null;
-  timestamp: String | null;
-  msg: String | null;
+  id: string;
+  author: string | null;
+  timestamp: number | null;
+  msg: string | null;
 
   constructor() {
     this.id = uuid.v4();

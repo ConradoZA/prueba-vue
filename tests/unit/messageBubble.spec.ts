@@ -19,8 +19,8 @@ const file: FileModel = {
   id: "e025e09e-e146-4103-b684-f3c1b0db7b60",
   author: "Tú",
   version: 1,
-  title: "prueba",
-  extension: "png",
+  fileName: "prueba",
+  type: "png",
   timestamp: 1620030643,
   link: "http://prueba.com",
 };
@@ -67,11 +67,13 @@ describe("MessageBubble component", () => {
       const archive = wrapper.find(
         "div.flex div:first-child span:nth-child(3)"
       );
+      const type = wrapper.find("div.flex div:first-child span:nth-child(5)");
       const date = wrapper.find("i");
       const link = wrapper.find("a");
 
       expect(version.text()).toBe("VERSIÓN " + file.version);
-      expect(archive.text()).toBe(file.title + "." + file.extension);
+      expect(archive.text()).toBe(file.fileName);
+      expect(type.text()).toBe(file.type);
       expect(date.text()).toBe(wrapper.vm.date);
       expect(link.attributes().href).toBe(file.link);
     });

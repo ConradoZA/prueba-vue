@@ -12,7 +12,7 @@
       <font-awesome-icon
         :icon="send"
         size="2x"
-        color="#6ca0db"
+        color="#4f8b00"
       ></font-awesome-icon>
     </button>
     <button @click="uploadFile" class="button" data-test="upload">
@@ -21,6 +21,12 @@
         size="2x"
         color="#6ca0db"
       ></font-awesome-icon>
+      <input
+        type="file"
+        style="display: none"
+        ref="fileInput"
+        @change="onFilePicked"
+      />
     </button>
   </form>
 </template>
@@ -40,7 +46,7 @@ export default class MessageInput extends Vue {
   send = faPlay;
   upload = faFileUpload;
   text = "";
-  version = 0;
+  version = 2;
 
   submitMessage(event: KeyboardEvent | MouseEvent): void {
     // Shift para cambio de línea, NO mandar
@@ -62,16 +68,21 @@ export default class MessageInput extends Vue {
   }
 
   uploadFile(): void {
+    (this.$refs["fileInput"] as any).click();
+  }
+
+  onFilePicked(event: any): void {
+    const file: File = event.target.files[0];
+
     this.version++;
     const newFile = new FileModel();
     newFile.author = "Tú";
     newFile.version = this.version;
-    newFile.title = this.text || "prueba";
-    newFile.extension = "pdf";
+    newFile.fileName = file.name;
+    newFile.type = file.type;
     newFile.timestamp = new Date().getTime();
     newFile.link = "http://temp.localhost.com";
 
-    this.text = "";
     this.$emit("addMsg", newFile);
   }
 }
@@ -82,22 +93,23 @@ export default class MessageInput extends Vue {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 4rem;
+  margin-top: 1rem;
 }
+
 .message-input {
   resize: none;
   width: 80%;
   font-family: Helvetica;
   padding: 0.375rem 0.75rem;
   display: block;
-  border: 1px solid #125dad;
+  border: 1px solid #6c9204;
   border-radius: 1rem;
 }
+
 .message-input:focus {
-  border-color: #80bdff;
+  border-color: #89bb00;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.2);
+  box-shadow: 0 0 0 0.2rem #c0fc1b3b;
 }
 
 .button {

@@ -5,7 +5,7 @@
     </div>
     <div class="body">
       <div class="table">
-        <chat-log style="height: 80%" :messages="messages"></chat-log>
+        <chat-log style="height: 88%" :messages="messages"></chat-log>
         <message-input @addMsg="addMessage"></message-input>
       </div>
     </div>
@@ -44,13 +44,15 @@ export default class ChatWindow extends Vue {
 <style scoped>
 .chat-container {
   display: table;
-  width: 50vw;
+  width: 60vw;
+  max-width: 800px;
   height: 80vh;
-  margin: auto;
+  margin: 5vh auto;
   background-color: #ffffff;
   border: solid 1px #bfbfbf;
   border-radius: 5px;
   overflow: hidden;
+  box-shadow: 5px 5px 8px 3px rgba(0, 0, 0, 0.35);
 }
 
 .heading {
@@ -58,10 +60,10 @@ export default class ChatWindow extends Vue {
   width: 100%;
   height: 4rem;
   text-align: center;
-  background-color: #89a4ff;
+  background-color: #fffeee;
   border-radius: 5px;
   user-select: none;
-  background: linear-gradient(#c0cdfa 0%, #89a4ff 75%);
+  background: linear-gradient(#fffffa 0%, #e0debc 75%);
 }
 
 .body {
@@ -74,6 +76,6 @@ export default class ChatWindow extends Vue {
 .table {
   display: table;
   width: 100%;
-  height: 100%;
+  height: 80vh;
 }
 </style>

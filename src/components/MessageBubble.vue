@@ -2,23 +2,25 @@
   <div v-if="!!message.version" class="file-bubble">
     <hr />
     <div class="flex">
-      <div>
+      <div class="size-1">
         <span>
           <b>VERSIÓN {{ message.version }}</b>
         </span>
         <br />
-        <span>{{ message.title }}.{{ message.extension }}</span>
+        <span>{{ message.fileName }} </span>
+        <br />
+        <span style="fontsize: 0.8rem"> {{ message.type }}</span>
         <br />
         <span>
           <i>{{ date }}</i>
         </span>
       </div>
 
-      <div>
+      <div class="size-2">
         <a :href="message.link">
           <font-awesome-icon
             :icon="download"
-            size="3x"
+            size="2x"
             color="#6ca0db"
           ></font-awesome-icon>
         </a>
@@ -91,7 +93,13 @@ export default class MessageBubble extends Vue {
 }
 .flex {
   display: flex;
-  justify-content: space-around;
+}
+.size-1 {
+  flex: 80%;
+}
+.size-2 {
+  flex: 20%;
+  align-self: center;
 }
 
 .message-bubble {
@@ -106,9 +114,10 @@ export default class MessageBubble extends Vue {
   padding: 8px;
   margin: 5px;
   text-align: left;
-  background-color: #dfdfdf;
+  background-color: #e7e2c1d3;
   border-radius: 10px;
   font-family: Helvetica;
+  white-space: pre-line;
 }
 
 .message-bubble.me {
@@ -116,19 +125,18 @@ export default class MessageBubble extends Vue {
 }
 
 .message-bubble.me .message-text {
-  background-color: #9ec6f5;
+  background-color: #b1d6ff;
 }
 
 .from {
   float: left;
   margin: 5px;
   font-size: 0.8rem;
-  color: #9da7af;
+  color: #9199a0;
 }
 
 .from.me {
   float: right;
-  color: #6ca0db;
 }
 
 .message-bubble span {

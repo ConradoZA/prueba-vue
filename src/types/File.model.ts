@@ -4,8 +4,8 @@ export class FileModel {
   id: string;
   author: string | null;
   version: number | null;
-  title: string | null;
-  extension: string | null;
+  fileName: string | null;
+  type: string | null;
   timestamp: number | null;
   link: string | null;
 
@@ -13,8 +13,8 @@ export class FileModel {
     this.id = uuid.v4();
     this.author = null;
     this.version = null;
-    this.title = null;
-    this.extension = null;
+    this.fileName = null;
+    this.type = null;
     this.timestamp = null;
     this.link = null;
   }

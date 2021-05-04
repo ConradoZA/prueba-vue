@@ -41,17 +41,27 @@ describe("MessageInput component", () => {
   });
 
   it("should emit custom event with new FILE when file button clicked", async () => {
-    const msg: string = "nombre_archivo";
+    const event = {
+      target: {
+        files: [
+          {
+            name: "image.png",
+            size: 50000,
+            type: "image/png",
+          },
+        ],
+      },
+    };
     const wrapper = shallowMount(MessageInput);
-    const button = wrapper.find('[data-test="upload"]');
-    const textArea = wrapper.find("textarea");
 
-    await textArea.setValue(msg);
-    await button.trigger("click");
+    (wrapper.vm as any).onFilePicked(event);
 
     expect(wrapper.emitted()).toHaveProperty("addMsg");
     expect(wrapper.emitted().addMsg[0]).toEqual([
-      expect.objectContaining({ title: msg }),
+      expect.objectContaining({
+        fileName: event.target.files[0].name,
+        type: event.target.files[0].type,
+      }),
     ]);
   });
 });

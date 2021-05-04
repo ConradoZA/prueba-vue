@@ -5,6 +5,13 @@ import { MessageModel } from "@/types/Message.model";
 import { FileModel } from "@/types/File.model";
 import { nextTick } from "@vue/runtime-core";
 
+const msg: MessageModel = {
+  id: "afcda6f8-1960-4344-9d33-3fd73ee997f3",
+  author: "Tú",
+  timestamp: 1620030643,
+  msg: "Esto es un mensaje de prueba, procedente del alumno.",
+};
+
 describe("ChatLog component", () => {
   it("displays the correct number of initial messages", () => {
     const wrapper = shallowMount(ChatLog, { props: { messages: data } });
@@ -15,12 +22,7 @@ describe("ChatLog component", () => {
 
   xit("displays new message when props change", async () => {
     const wrapper = shallowMount(ChatLog, { props: { messages: data } });
-    const msg: MessageModel = {
-      id: "afcda6f8-1960-4344-9d33-3fd73ee997f3",
-      author: "Tú",
-      timestamp: 1620030643,
-      msg: "Esto es un mensaje de prueba, procedente del alumno.",
-    };
+
     const newArray: Array<MessageModel | FileModel> = data;
     newArray.push(msg);
 
@@ -30,13 +32,13 @@ describe("ChatLog component", () => {
     expect(wrapper.findAll('[data-test="msg"]')).toHaveLength(newArray.length);
   });
 
-  xit("scrolled to the bottom", () => {
-    const spy = spyOn(ChatLog, "scrollToBottom");
-    const wrapper = shallowMount(ChatLog, {
-      props: { messages: data },
-    });
+  xit("scroll to the bottom when amount of messages change", async () => {
+    const wrapper = shallowMount(ChatLog, { props: { messages: data } });
+    const spy = jest.spyOn(wrapper.vm, "scrollToBottom");
 
-    expect(wrapper.exists()).toBeTruthy();
+    await wrapper.setProps({ messages: [msg] });
+    // await (wrapper.vm as any).$options.watch.messages.call(wrapper.vm, [msg]);
+
     expect(spy).toHaveBeenCalled();
   });
 });

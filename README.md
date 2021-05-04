@@ -6,10 +6,10 @@ No hay un backend al que llamar para que almacene los datos ni para abrir un web
 Este proyecto está hecho con Vue 3 (preview), con componentes de clase y typescript.
 Aparte de eso, sólo he añadido las librerías de font-awesome y uuid.
 
-- ⚓ [Requerimientos](##-⚓-Requerimientos)
-- 🚥 [Instalación](##-🚥-Instalación)
-- 🏁 [Ejecución](##-🏁-Ejecución)
-- 👨‍💻 [Tests](##-👨‍💻-Tests)
+- ⚓ [Requerimientos](#-requerimientos)
+- 🚥 [Instalación](#-instalación)
+- 🏁 [Ejecución](#-ejecución)
+- 👨‍💻 [Tests](#-tests)
 
 ---
 
